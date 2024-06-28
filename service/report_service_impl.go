@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"reports/config"
 	"reports/data/request"
-	"reports/data/response"
 	"reports/model"
 	"reports/repository"
 	"time"
@@ -116,13 +115,13 @@ func (r *ReportServiceImpl) FindAll(ctx context.Context, query *model.SearchRepo
 	return result, nil
 }
 
-func (r *ReportServiceImpl) FindById(ctx context.Context, id int) (*response.ReportResponse, error) {
+func (r *ReportServiceImpl) FindById(ctx context.Context, id int) (*model.Report, error) {
 	report, err := r.reportRepository.FindById(ctx, id)
 	if err != nil {
 		return nil, err // Return error if FindById fails
 	}
 
-	reportResp := &response.ReportResponse{
+	reportResp := &model.Report{
 		Id:                              report.Id,
 		MonthOf:                         report.MonthOf,
 		WorkerName:                      report.WorkerName,

@@ -495,8 +495,7 @@ func unmarshalJSONFields(report *model.Report, worshipServiceJSON, sundaySchoolJ
 	for _, field := range jsonFields {
 		if field.jsonData != nil {
 			if err := json.Unmarshal(field.jsonData, field.target); err != nil {
-				// Handle the error appropriately in your context
-				// e.g., return the error, log it, etc.
+				panic(err)
 			}
 		}
 	}

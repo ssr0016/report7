@@ -2,14 +2,14 @@ package utils
 
 import (
 	"fmt"
-	"reports/data/response"
+	"reports/model"
 	"strconv"
 	"strings"
 
 	"github.com/tealeg/xlsx"
 )
 
-func AddReportToSheet(sheet *xlsx.Sheet, report *response.ReportResponse) {
+func AddReportToSheet(sheet *xlsx.Sheet, report *model.Report) {
 	// Set specific column widths
 	const (
 		orgNameWidth = 35
