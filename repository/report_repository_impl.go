@@ -20,7 +20,6 @@ func NewReportRepository(Db *sql.DB) ReportRepository {
 	return &ReportRepositoryImpl{Db: Db}
 }
 
-// Delete implements BookRepository
 func (r *ReportRepositoryImpl) Delete(ctx context.Context, reportId int) error {
 	tx, err := r.Db.BeginTx(ctx, nil)
 	if err != nil {
@@ -41,7 +40,6 @@ func (r *ReportRepositoryImpl) Delete(ctx context.Context, reportId int) error {
 	return nil
 }
 
-// FindAll implements BookRepository
 func (r *ReportRepositoryImpl) FindAll(ctx context.Context, query *model.SearchReportQuery) (*model.SearchReportResult, error) {
 	tx, err := r.Db.BeginTx(ctx, nil)
 	if err != nil {
@@ -202,7 +200,132 @@ func (r *ReportRepositoryImpl) FindAll(ctx context.Context, query *model.SearchR
 				return nil, err
 			}
 		}
-		// Repeat for other JSONB fields...
+
+		if sundaySchoolJSON != nil {
+			if err := json.Unmarshal(sundaySchoolJSON, &report.SundaySchool); err != nil {
+				return nil, err
+			}
+		}
+
+		if prayerMeetingsJSON != nil {
+			if err := json.Unmarshal(prayerMeetingsJSON, &report.PrayerMeetings); err != nil {
+				return nil, err
+			}
+		}
+
+		if bibleStudiesJSON != nil {
+			if err := json.Unmarshal(bibleStudiesJSON, &report.BibleStudies); err != nil {
+				return nil, err
+			}
+		}
+
+		if mensFellowshipsJSON != nil {
+			if err := json.Unmarshal(mensFellowshipsJSON, &report.MensFellowships); err != nil {
+				return nil, err
+			}
+		}
+
+		if womensFellowshipsJSON != nil {
+			if err := json.Unmarshal(womensFellowshipsJSON, &report.WomensFellowships); err != nil {
+				return nil, err
+			}
+		}
+
+		if youthFellowshipsJSON != nil {
+			if err := json.Unmarshal(youthFellowshipsJSON, &report.YouthFellowships); err != nil {
+				return nil, err
+			}
+		}
+
+		if childFellowshipsJSON != nil {
+			if err := json.Unmarshal(childFellowshipsJSON, &report.ChildFellowships); err != nil {
+				return nil, err
+			}
+		}
+
+		if outreachJSON != nil {
+			if err := json.Unmarshal(outreachJSON, &report.Outreach); err != nil {
+				return nil, err
+			}
+		}
+
+		if trainingOrSeminarsJSON != nil {
+			if err := json.Unmarshal(trainingOrSeminarsJSON, &report.TrainingOrSeminars); err != nil {
+				return nil, err
+			}
+		}
+
+		if leadershipConferencesJSON != nil {
+			if err := json.Unmarshal(leadershipConferencesJSON, &report.LeadershipConferences); err != nil {
+				return nil, err
+			}
+		}
+
+		if leadershipTrainingJSON != nil {
+			if err := json.Unmarshal(leadershipTrainingJSON, &report.LeadershipTraining); err != nil {
+				return nil, err
+			}
+		}
+
+		if othersJSON != nil {
+			if err := json.Unmarshal(othersJSON, &report.Others); err != nil {
+				return nil, err
+			}
+		}
+
+		if familyDaysJSON != nil {
+			if err := json.Unmarshal(familyDaysJSON, &report.FamilyDays); err != nil {
+				return nil, err
+			}
+		}
+
+		if tithesAndOfferingsJSON != nil {
+			if err := json.Unmarshal(tithesAndOfferingsJSON, &report.TithesAndOfferings); err != nil {
+				return nil, err
+			}
+		}
+
+		if homeVisitedJSON != nil {
+			if err := json.Unmarshal(homeVisitedJSON, &report.HomeVisited); err != nil {
+				return nil, err
+			}
+		}
+
+		if bibleStudyOrGroupLedJSON != nil {
+			if err := json.Unmarshal(bibleStudyOrGroupLedJSON, &report.BibleStudyOrGroupLed); err != nil {
+				return nil, err
+			}
+		}
+
+		if sermonOrMessageJSON != nil {
+			if err := json.Unmarshal(sermonOrMessageJSON, &report.SermonOrMessagePreached); err != nil {
+				return nil, err
+			}
+		}
+
+		if personNewlyContactedJSON != nil {
+			if err := json.Unmarshal(personNewlyContactedJSON, &report.PersonNewlyContacted); err != nil {
+				return nil, err
+			}
+		}
+
+		if personFollowedUpJSON != nil {
+			if err := json.Unmarshal(personFollowedUpJSON, &report.PersonFollowedUp); err != nil {
+				return nil, err
+			}
+		}
+
+		if personLedToChristJSON != nil {
+			if err := json.Unmarshal(personLedToChristJSON, &report.PersonLedToChrist); err != nil {
+				return nil, err
+			}
+		}
+
+		if namesJSON != nil {
+			if err := json.Unmarshal(namesJSON, &report.Names); err != nil {
+				return nil, err
+			}
+		}
 
 		reports = append(reports, &report) // Append pointer to report
 	}

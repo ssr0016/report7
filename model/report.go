@@ -62,10 +62,10 @@ type Report struct {
 }
 
 type SearchReportQuery struct {
-	MonthOf    string `form:"month_of"`
-	WorkerName string `form:"worker_name"`
-	Page       int    `form:"page"`
-	PerPage    int    `form:"per_page"`
+	MonthOf    string `schema:"month_of"`
+	WorkerName string `schema:"worker_name"`
+	Page       int    `schema:"page"`
+	PerPage    int    `schema:"per_page"`
 }
 
 type SearchReportResult struct {
